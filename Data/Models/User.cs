@@ -20,8 +20,7 @@ namespace Inlämning1Tomaso.Data.Models
         [Phone]
         public int Phone { get; set; }
 
-
-
+        
 
     }
 }

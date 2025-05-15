@@ -1,11 +1,12 @@
-﻿using Inlämning1Tomaso.Data.Models;
+﻿using Inlämning1Tomaso.Data.Interface.Repositories;
+using Inlämning1Tomaso.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Inlämning1Tomaso.Data.Repos
 {
-    public class OrderRepo
+    public class OrderRepo : IOrderRepo
     {
         private readonly TomasoDbContext _context;
 
@@ -37,6 +38,13 @@ namespace Inlämning1Tomaso.Data.Repos
                 _context.Orders.Remove(order);
                 _context.SaveChanges();
             }
+        }
+
+        public List<Order> GetAllOrders(int orderID)
+        {
+            return _context.Orders
+                            .Include(o => o.OrderDishes)  // Inkludera OrderDishes för att få alla rätter för varje beställning
+                            .ToList();
         }
     }
 }

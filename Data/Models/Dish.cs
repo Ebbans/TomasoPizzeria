@@ -23,7 +23,6 @@ namespace Inlämning1Tomaso.Data.Models
 
 
         public List<OrderDish> OrderDishes { get; set; } //Maträtt som förekommer i flera beställningar
-        public List<DishIngredient> DishIngredients { get; set; } // M:M-relation
 
 
 

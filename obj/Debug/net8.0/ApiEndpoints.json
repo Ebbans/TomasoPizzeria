@@ -1,15 +1,15 @@
 [
   {
-    "ContainingType": "Inl\u00E4mning1Tomaso.Controllers.CustomerController",
-    "Method": "GetCustomers",
-    "RelativePath": "api/Customer",
+    "ContainingType": "Inl\u00E4mning1Tomaso.Controllers.CategoryController",
+    "Method": "GetAll",
+    "RelativePath": "api/Category",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Inl\u00E4mning1Tomaso.Data.DTOs.CustomerDto, Inl\u00E4mning1Tomaso, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Inl\u00E4mning1Tomaso.Data.DTOs.CategoryDto, Inl\u00E4mning1Tomaso, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -20,22 +20,22 @@
     ]
   },
   {
-    "ContainingType": "Inl\u00E4mning1Tomaso.Controllers.CustomerController",
-    "Method": "PostCustomer",
-    "RelativePath": "api/Customer",
+    "ContainingType": "Inl\u00E4mning1Tomaso.Controllers.CategoryController",
+    "Method": "CreateCategory",
+    "RelativePath": "api/Category",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "dto",
-        "Type": "Inl\u00E4mning1Tomaso.Data.DTOs.CustomerDto",
+        "Name": "categoryDto",
+        "Type": "Inl\u00E4mning1Tomaso.Data.DTOs.CategoryDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Inl\u00E4mning1Tomaso.Data.DTOs.CustomerDto",
+        "Type": "Inl\u00E4mning1Tomaso.Data.DTOs.CategoryDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -46,10 +46,62 @@
     ]
   },
   {
-    "ContainingType": "Inl\u00E4mning1Tomaso.Controllers.CustomerController",
-    "Method": "GetCustomer",
-    "RelativePath": "api/Customer/{id}",
+    "ContainingType": "Inl\u00E4mning1Tomaso.Controllers.DishController",
+    "Method": "GetAll",
+    "RelativePath": "api/Dish",
     "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Inl\u00E4mning1Tomaso.Data.DTOs.DishDto, Inl\u00E4mning1Tomaso, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Inl\u00E4mning1Tomaso.Controllers.DishController",
+    "Method": "AddDish",
+    "RelativePath": "api/Dish",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dish",
+        "Type": "Inl\u00E4mning1Tomaso.Data.Models.Dish",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Inl\u00E4mning1Tomaso.Controllers.DishController",
+    "Method": "UpdateDish",
+    "RelativePath": "api/Dish",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dish",
+        "Type": "Inl\u00E4mning1Tomaso.Data.Models.Dish",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Inl\u00E4mning1Tomaso.Controllers.DishController",
+    "Method": "DeleteDish",
+    "RelativePath": "api/Dish/{id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -59,9 +111,19 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Inl\u00E4mning1Tomaso.API.Controllers.IngredientController",
+    "Method": "GetIngredients",
+    "RelativePath": "api/Ingredient",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "Inl\u00E4mning1Tomaso.Data.DTOs.CustomerDto",
+        "Type": "System.Collections.Generic.List\u00601[[Inl\u00E4mning1Tomaso.Data.Models.Ingredient, Inl\u00E4mning1Tomaso, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -72,9 +134,35 @@
     ]
   },
   {
-    "ContainingType": "Inl\u00E4mning1Tomaso.Controllers.CustomerController",
-    "Method": "PutCustomer",
-    "RelativePath": "api/Customer/{id}",
+    "ContainingType": "Inl\u00E4mning1Tomaso.API.Controllers.IngredientController",
+    "Method": "PostIngredient",
+    "RelativePath": "api/Ingredient",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ingredient",
+        "Type": "Inl\u00E4mning1Tomaso.Data.Models.Ingredient",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Inl\u00E4mning1Tomaso.Data.Models.Ingredient",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Inl\u00E4mning1Tomaso.API.Controllers.IngredientController",
+    "Method": "PutIngredient",
+    "RelativePath": "api/Ingredient/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -85,17 +173,17 @@
         "IsRequired": true
       },
       {
-        "Name": "dto",
-        "Type": "Inl\u00E4mning1Tomaso.Data.DTOs.CustomerDto",
+        "Name": "ingredient",
+        "Type": "Inl\u00E4mning1Tomaso.Data.Models.Ingredient",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Inl\u00E4mning1Tomaso.Controllers.CustomerController",
-    "Method": "DeleteCustomer",
-    "RelativePath": "api/Customer/{id}",
+    "ContainingType": "Inl\u00E4mning1Tomaso.API.Controllers.IngredientController",
+    "Method": "DeleteIngredient",
+    "RelativePath": "api/Ingredient/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

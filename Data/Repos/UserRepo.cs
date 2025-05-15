@@ -31,12 +31,11 @@ namespace Inlämning1Tomaso.Data.Repos
             }
         }
 
-        public List<User> GetUsers(int userID)
-        {
-            return _context.Users.ToList();
-        }
+        //public List<User> GetAllUsers()
+        //{
+        //   return  _context.Users.GettAllUsers();
+        //}
 
-       
         public void UpdateUser(User user)
         {
             var existingUser = _context.Users.SingleOrDefault(u => u.UserID == user.UserID);

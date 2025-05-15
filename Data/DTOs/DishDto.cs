@@ -1,4 +1,6 @@
-﻿namespace Inlämning1Tomaso.Data.DTOs
+﻿using Inlämning1Tomaso.Data.Models;
+
+namespace Inlämning1Tomaso.Data.DTOs
 {
     public class DishDto
     {
@@ -7,8 +9,7 @@
             public string Name { get; set; }
             public decimal Price { get; set; }
 
-            // Visa ev. kategori eller ingredienser om du vill
-            public List<string> Ingredients { get; set; }
+        
         
 
     }

@@ -11,7 +11,6 @@ namespace Inlämning1Tomaso.Data.Models
         [StringLength(100)]
         public string Name { get; set; }
 
-        public List<Dish> Dishes { get; set; } //Ingrediens kan ingå i många maträtter (M:M)
-        public List<DishIngredient> DishIngredients { get; set; } // M:M-relation
+        public List<Dish> Dishes { get; set; } 
     }
 }

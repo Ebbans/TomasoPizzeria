@@ -10,6 +10,6 @@ namespace Inlämning1Tomaso.Data.Interface.Repositories
 
         void UpdateUser (User user);
 
-        List <User> GetUsers(int userID);
+        //public List <User> GetAllUsers();
     }
 }

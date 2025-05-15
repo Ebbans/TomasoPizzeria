@@ -38,20 +38,11 @@ namespace Inlämning1Tomaso.Data.Repos
                 _context.SaveChanges();
             }
         }
-        public Dish GetDishWithIngredients(int dishID)
-        {
-            return _context.Dishes
-                    .Include(d => d.DishIngredients)
-                        .ThenInclude(di => di.Ingredient)
-                    .SingleOrDefault(d => d.DishID == dishID);
-        }
+       
 
         public List<Dish> GetAllDishes()
         {
-            return _context.Dishes
-        .Include(d => d.DishIngredients)
-            .ThenInclude(di => di.Ingredient)
-        .ToList();
+            return _context.Dishes.ToList();
         }
     }
 }
