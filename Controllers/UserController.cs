@@ -15,7 +15,15 @@ namespace Inlämning1Tomaso.Controllers
             _userService = userService;
         }
 
-       
+
+        [HttpGet]
+        public IActionResult <Order> GetOrders(int userID) 
+        { 
+            //Lägg till metod i userservice som hämtar order baserat på ID.
+            //return lista av orderDto
+        }
+
+        
 
        
     }

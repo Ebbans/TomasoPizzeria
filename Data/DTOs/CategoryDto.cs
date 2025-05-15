@@ -6,6 +6,5 @@
 
         public string CategoryName { get; set; }
 
-        public List<DishDto> Dishes { get; set; } // valfritt
     }
 }

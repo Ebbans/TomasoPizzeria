@@ -11,7 +11,6 @@ namespace Inlämning1Tomaso.Data.Models
         [StringLength(50)]
         public string CategoryName { get; set; }
 
-        public List <Dish> Dishes { get; set; }
     }
 }
  

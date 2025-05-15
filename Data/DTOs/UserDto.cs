@@ -9,7 +9,6 @@ namespace Inlämning1Tomaso.Data.DTOs
             public string UserName { get; set; }
             public string Email { get; set; }
         
-            public List<UserDto> Users { get; set; }
 
     }
 }
