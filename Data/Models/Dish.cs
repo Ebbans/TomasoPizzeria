@@ -20,6 +20,7 @@ namespace Inlämning1Tomaso.Data.Models
         [Required]
 
 
+        public List <Ingredient> ingredients { get; set; }
 
         public List<OrderDish> OrderDishes { get; set; } //Maträtt som förekommer i flera beställningar
 

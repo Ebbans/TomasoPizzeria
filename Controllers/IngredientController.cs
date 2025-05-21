@@ -16,7 +16,7 @@ namespace Inlämning1Tomaso.API.Controllers
             _ingredientService = ingredientService;
         }
 
-        // GET: api/Ingredient
+        
         [HttpGet]
         public ActionResult<List<Ingredient>> GetIngredients()
         {
@@ -24,33 +24,34 @@ namespace Inlämning1Tomaso.API.Controllers
             return Ok(ingredients);
         }
 
-        // POST: api/Ingredient
-        [HttpPost]
-        public ActionResult<Ingredient> PostIngredient(Ingredient ingredient)
-        {
-            _ingredientService.AddIngredient(ingredient);
-            return CreatedAtAction(nameof(GetIngredients), new { id = ingredient.IngredientID }, ingredient);
-        }
+    //    // POST: api/Ingredient
+    //    [HttpPost]
+    //    public ActionResult<Ingredient> PostIngredient(Ingredient ingredient)
+    //    {
+    //        _ingredientService.AddIngredient(ingredient);
+    //        return CreatedAtAction(nameof(GetIngredients), new { id = ingredient.IngredientID }, ingredient);
+    //    }
 
-        // PUT: api/Ingredient/5
-        [HttpPut("{id}")]
-        public IActionResult PutIngredient(int id, Ingredient ingredient)
-        {
-            if (id != ingredient.IngredientID)
-            {
-                return BadRequest();
-            }
+    //    // PUT: api/Ingredient/5
+    //    [HttpPut("{id}")]
+    //    public IActionResult PutIngredient(int id, Ingredient ingredient)
+    //    {
+    //        if (id != ingredient.IngredientID)
+    //        {
+    //            return BadRequest();
+    //        }
 
-            _ingredientService.UpdateIngredient(ingredient);
-            return NoContent();
-        }
+    //        _ingredientService.UpdateIngredient(ingredient);
+    //        return NoContent();
+    //    }
 
-        // DELETE: api/Ingredient/5
-        [HttpDelete("{id}")]
-        public IActionResult DeleteIngredient(int id)
-        {
-            _ingredientService.DeleteIngredient(id);
-            return NoContent();
-        }
+    //    // DELETE: api/Ingredient/5
+    //    [HttpDelete("{id}")]
+    //    public IActionResult DeleteIngredient(int id)
+    //    {
+    //        _ingredientService.DeleteIngredient(id);
+    //        return NoContent();
+    //    }
+    //
     }
 }

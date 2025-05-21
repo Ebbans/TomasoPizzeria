@@ -1,7 +1,5 @@
 ﻿using Inlämning1Tomaso.Data.Interface.Repositories;
 using Inlämning1Tomaso.Data.Models;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Inlämning1Tomaso.Data.Repos
@@ -15,35 +13,35 @@ namespace Inlämning1Tomaso.Data.Repos
             _context = context;
         }
 
-
-        public void AddUSer(User user)
+        public void AddUser(User user)
         {
-            _context.Users.Add(user);  
-            _context.SaveChanges();  
+            _context.Users.Add(user);
+            _context.SaveChanges();
         }
+
         public void DeleteUser(int userID)
         {
-            var user = _context.Users.SingleOrDefault(u => u.UserID == userID);  // Hämta användaren
+            var user = _context.Users.FirstOrDefault(u => u.UserID == userID);
             if (user != null)
             {
-                _context.Users.Remove(user);  // Ta bort användaren från Users-tabellen
-                _context.SaveChanges();  // Spara ändringarna
+                _context.Users.Remove(user);
+                _context.SaveChanges();
             }
         }
-
-        //public List<User> GetAllUsers()
-        //{
-        //   return  _context.Users.GettAllUsers();
-        //}
 
         public void UpdateUser(User user)
         {
-            var existingUser = _context.Users.SingleOrDefault(u => u.UserID == user.UserID);
+            var existingUser = _context.Users.FirstOrDefault(u => u.UserID == user.UserID);
             if (existingUser != null)
             {
-                _context.Entry(existingUser).CurrentValues.SetValues(user);  // Uppdatera användarens värden
-                _context.SaveChanges();  // Spara ändringarna
+                _context.Entry(existingUser).CurrentValues.SetValues(user);
+                _context.SaveChanges();
             }
+        }
+
+        public User GetUserById(int userId)
+        {
+            return _context.Users.SingleOrDefault(u => u.UserID == userId);
         }
     }
 }

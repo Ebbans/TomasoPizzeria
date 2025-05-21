@@ -1,4 +1,5 @@
-﻿using Inlämning1Tomaso.Data.Interface.Repositories;
+﻿using Inlämning1Tomaso.Data.DTOs;
+using Inlämning1Tomaso.Data.Interface.Repositories;
 using Inlämning1Tomaso.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -22,29 +23,26 @@ namespace Inlämning1Tomaso.Data.Repos
             _context.SaveChanges();
         }
 
-        // Ta bort en beställning
-        public void DeleteOrder(int orderID)
+        public OrderDto AddOrder(CreateOrderDto dto, int userId)
         {
-            var order = _context.Orders
-                .Include(o => o.OrderDishes)
-                .FirstOrDefault(o => o.OrderID == orderID);
-
-            if (order != null)
-            {
-                // Ta bort kopplingar till rätter först (OrderDish-poster)
-                _context.RemoveRange(order.OrderDishes);
-
-                // Ta bort själva beställningen
-                _context.Orders.Remove(order);
-                _context.SaveChanges();
-            }
+            throw new NotImplementedException();
         }
+
+        
 
         public List<Order> GetAllOrders(int orderID)
         {
             return _context.Orders
                             .Include(o => o.OrderDishes)  // Inkludera OrderDishes för att få alla rätter för varje beställning
                             .ToList();
+        }
+
+        public List<Order> GetAllOrdersByUserId(int userId)
+        {
+            return _context.Orders
+       .Include(o => o.OrderDishes)
+       .Where(o => o.UserID == userId)
+       .ToList();
         }
     }
 }

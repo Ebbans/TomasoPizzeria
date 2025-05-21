@@ -8,6 +8,6 @@ namespace Inlämning1Tomaso.Data.Interface.Repositories
         void AddIngredient(Ingredient ingredient);
         void DeleteIngredient(int ingredientID);
         void UpdateIngredient(Ingredient ingredient);
-        List<Ingredient> GetAllIngredients(); // Lägg till denna metod
+        List<Ingredient> GetAllIngredients(); 
     }
 }

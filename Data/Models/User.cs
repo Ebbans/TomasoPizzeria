@@ -10,15 +10,17 @@ namespace Inlämning1Tomaso.Data.Models
 
         [StringLength(50)] 
         public string UserName { get; set; }
+        [Required]
 
         [StringLength(50)]
         public string Email { get; set; }
+        [Required]
 
         [StringLength (50)]
         public string Password { get; set; }
-
+        [StringLength(15)]
         [Phone]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         
 

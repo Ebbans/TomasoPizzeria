@@ -23,16 +23,16 @@ namespace Inlämning1Tomaso.Controllers
             return Ok(_categoryService.GetAllCategories());
         }
 
-        [HttpPost]
-        public ActionResult<CategoryDto> CreateCategory([FromBody] CategoryDto categoryDto)
-        {
-            if (categoryDto == null || string.IsNullOrWhiteSpace(categoryDto.CategoryName))
-                return BadRequest("Category name is requested.");
+        //[HttpPost]
+        //public ActionResult<CategoryDto> CreateCategory([FromBody] CategoryDto categoryDto)
+        //{
+        //    if (categoryDto == null || string.IsNullOrWhiteSpace(categoryDto.CategoryName))
+        //        return BadRequest("Category name is requested.");
 
-            var created = _categoryService.CreateCategory(categoryDto);
+        //    //var created = _categoryService.CreateCategory(categoryDto);
 
-            return CreatedAtAction(nameof(GetAll), new { id = created.CategoryID }, created);
-        }
+        //    //return CreatedAtAction(nameof(GetAll), new { id = created.CategoryID }, created);
+        //}
 
     }
 }

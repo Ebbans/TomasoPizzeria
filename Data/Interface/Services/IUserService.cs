@@ -4,11 +4,10 @@ namespace Inlämning1Tomaso.Data.Interface.Services
 {
     public interface IUserService
     {
-        public interface IUserService
-        {
-            public List<UserDto> GetAllUsers(); 
-          
-        }
-
+        bool CreateUser(CreateUserDto dto);
+        string Authenticate(string userName, string password);
+        GetUserDto GetById(int id);
+        void UpdateUser(int id, CreateUserDto dto);
+        void DeleteUser(int id);
     }
 }

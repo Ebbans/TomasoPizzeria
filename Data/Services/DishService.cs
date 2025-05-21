@@ -16,20 +16,20 @@ namespace Inlämning1Tomaso.Data.Services
             _dishRepo = dishRepo;
         }
 
-        public void AddDish(Dish dish)
-        {
-            _dishRepo.AddDish(dish);
-        }
+        //public void AddDish(Dish dish)
+        //{
+        //    _dishRepo.AddDish(dish);
+        //}
 
-        public void DeleteDish(int dishID)
-        {
-            _dishRepo.DeleteDish(dishID);
-        }
+        //public void DeleteDish(int dishID)
+        //{
+        //    _dishRepo.DeleteDish(dishID);
+        //}
 
-        public void UpdateDish(Dish dish)
-        {
-            _dishRepo.UpdateDish(dish);
-        }
+        //public void UpdateDish(Dish dish)
+        //{
+        //    _dishRepo.UpdateDish(dish);
+        //}
 
         public List<DishDto> GetAllDishes()
         {

@@ -19,7 +19,7 @@ namespace Inlämning1Tomaso.Data.Services
             return _categoryRepo.GetAllCategories()
                 .Select(c => new CategoryDto
                 {
-                    CategoryID = c.CategoryID,
+                    //CategoryID = c.CategoryID,
                     CategoryName = c.CategoryName
                 }).ToList();
         }
@@ -36,7 +36,7 @@ namespace Inlämning1Tomaso.Data.Services
             // Returnera DTO med ID (om du vill se det direkt i svaret)
             return new CategoryDto
             {
-                CategoryID = category.CategoryID,
+                //CategoryID = category.CategoryID,
                 CategoryName = category.CategoryName
             };
         }
