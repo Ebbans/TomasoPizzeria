@@ -15,12 +15,12 @@ namespace Inlämning1Tomaso.Data.Repos
    
         public List<Category> GetAllCategories()
         {
-            return _context.Category.ToList();
+            return _context.Categories.ToList();
         }
 
         public void CreateCategory(Category category)
         {
-            _context.Category.Add(category);
+            _context.Categories.Add(category);
             _context.SaveChanges();
         }
 

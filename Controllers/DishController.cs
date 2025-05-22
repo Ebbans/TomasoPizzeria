@@ -1,13 +1,10 @@
 ﻿using Inlämning1Tomaso.Data.Interface.Services;
-using Inlämning1Tomaso.Data.Models;
-using Inlämning1Tomaso.Data.DTOs;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace Inlämning1Tomaso.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class DishController : ControllerBase
     {
         private readonly IDishService _dishService;
@@ -17,20 +14,14 @@ namespace Inlämning1Tomaso.Controllers
             _dishService = dishService;
         }
 
-
-        [HttpGet]
-        public IActionResult GetAll()
+        [HttpGet("{id}/ingredients")]
+        public IActionResult GetDishIngredients(int id)
         {
-            var dishes = _dishService.GetAllDishes();
+            var dish = _dishService.GetDishIngredients(id);
+            if (dish == null)
+                return NotFound();
 
-            if (dishes == null || !dishes.Any())
-            {
-                return NotFound("Inga maträtter hittades.");
-            }
-
-            return Ok(dishes);
+            return Ok(dish);
         }
-
-
     }
 }

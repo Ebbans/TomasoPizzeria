@@ -1,12 +1,11 @@
-﻿using Inlämning1Tomaso.Data.Models;
+﻿using Inlämning1Tomaso.Data.DTOs;
+using Inlämning1Tomaso.Data.Models;
 
 namespace Inlämning1Tomaso.Data.Interface.Repositories
 {
     public interface IDishRepo
     {
-
-
-        List<Dish> GetAllDishes();
+        DishIngredientsDto GetDishIngredients(int dishId);
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using Inlämning1Tomaso.Data.Interface.Repositories;
+﻿using Inlämning1Tomaso.Data.DTOs;
+using Inlämning1Tomaso.Data.Interface.Repositories;
 using Inlämning1Tomaso.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,36 +14,26 @@ namespace Inlämning1Tomaso.Data.Repos
             _context = context;
         }
 
-        //public void AddDish(Dish dish)
-        //{
-        //    _context.Dishes.Add(dish);
-        //    _context.SaveChanges();
-        //}
-
-        //public void DeleteDish(int dishID)
-        //{
-        //    var dish = _context.Dishes.SingleOrDefault(d => d.DishID == dishID);
-        //    if (dish != null)
-        //    {
-        //        _context.Dishes.Remove(dish);
-        //        _context.SaveChanges();
-        //    }
-        //}
-
-        //public void UpdateDish(Dish dish)
-        //{
-        //    var existingDish = _context.Dishes.SingleOrDefault(d => d.DishID == dish.DishID);
-        //    if (existingDish != null)
-        //    {
-        //        _context.Entry(existingDish).CurrentValues.SetValues(dish);
-        //        _context.SaveChanges();
-        //    }
-        //}
-       
-
-        public List<Dish> GetAllDishes()
+        public DishIngredientsDto GetDishIngredients(int dishId)
         {
-            return _context.Dishes.ToList();
+            var dish = _context.Dishes
+                .Include(d => d.Ingredients)
+                .FirstOrDefault(d => d.DishID == dishId);
+
+            if (dish == null) return null;
+
+            return new DishIngredientsDto
+            {
+                DishID = dish.DishID,
+                DishName = dish.DishName,
+                Description = dish.Description,
+                Price = dish.Price,
+                Ingredients = dish.Ingredients.Select(i => new IngredientDto
+                {
+                    IngredientID = i.IngredientID,
+                    Name = i.Name
+                }).ToList()
+            };
         }
     }
 }

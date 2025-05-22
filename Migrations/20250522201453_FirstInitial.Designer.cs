@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inlämning1Tomaso.Migrations
 {
     [DbContext(typeof(TomasoDbContext))]
-    [Migration("20250519035344_ThirdInitial")]
-    partial class ThirdInitial
+    [Migration("20250522201453_FirstInitial")]
+    partial class FirstInitial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,28 @@ namespace Inlämning1Tomaso.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Ingredient", b =>
+                {
+                    b.Property<int>("IngredientID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IngredientID"));
+
+                    b.Property<int>("DishID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IngredientID");
+
+                    b.HasIndex("DishID");
+
+                    b.ToTable("Ingredients");
+                });
 
             modelBuilder.Entity("Inlämning1Tomaso.Data.Models.Category", b =>
                 {
@@ -40,7 +62,7 @@ namespace Inlämning1Tomaso.Migrations
 
                     b.HasKey("CategoryID");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Inlämning1Tomaso.Data.Models.Dish", b =>
@@ -51,8 +73,10 @@ namespace Inlämning1Tomaso.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DishID"));
 
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
@@ -61,35 +85,14 @@ namespace Inlämning1Tomaso.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("IngredientID")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("DishID");
 
-                    b.HasIndex("IngredientID");
+                    b.HasIndex("CategoryID");
 
                     b.ToTable("Dishes");
-                });
-
-            modelBuilder.Entity("Inlämning1Tomaso.Data.Models.Ingredient", b =>
-                {
-                    b.Property<int>("IngredientID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IngredientID"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("IngredientID");
-
-                    b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("Inlämning1Tomaso.Data.Models.Order", b =>
@@ -170,11 +173,26 @@ namespace Inlämning1Tomaso.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Ingredient", b =>
+                {
+                    b.HasOne("Inlämning1Tomaso.Data.Models.Dish", "Dish")
+                        .WithMany("Ingredients")
+                        .HasForeignKey("DishID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Dish");
+                });
+
             modelBuilder.Entity("Inlämning1Tomaso.Data.Models.Dish", b =>
                 {
-                    b.HasOne("Inlämning1Tomaso.Data.Models.Ingredient", null)
+                    b.HasOne("Inlämning1Tomaso.Data.Models.Category", "Category")
                         .WithMany("Dishes")
-                        .HasForeignKey("IngredientID");
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Inlämning1Tomaso.Data.Models.Order", b =>
@@ -207,14 +225,16 @@ namespace Inlämning1Tomaso.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("Inlämning1Tomaso.Data.Models.Dish", b =>
-                {
-                    b.Navigation("OrderDishes");
-                });
-
-            modelBuilder.Entity("Inlämning1Tomaso.Data.Models.Ingredient", b =>
+            modelBuilder.Entity("Inlämning1Tomaso.Data.Models.Category", b =>
                 {
                     b.Navigation("Dishes");
+                });
+
+            modelBuilder.Entity("Inlämning1Tomaso.Data.Models.Dish", b =>
+                {
+                    b.Navigation("Ingredients");
+
+                    b.Navigation("OrderDishes");
                 });
 
             modelBuilder.Entity("Inlämning1Tomaso.Data.Models.Order", b =>

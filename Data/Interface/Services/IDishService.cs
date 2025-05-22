@@ -6,6 +6,6 @@ namespace Inlämning1Tomaso.Data.Interface.Services
 {
     public interface IDishService
     {
-        List<DishDto> GetAllDishes();
+        DishIngredientsDto GetDishIngredients(int dishId);
     }
 }

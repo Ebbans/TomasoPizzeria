@@ -3,7 +3,7 @@
     public class CreateUserDto
     {
 
-        public string CreateUserName { get; set; }
+        public string ?CreateUserName { get; set; }
 
         public string CreateUserEmail { get; set; }
 

@@ -14,18 +14,18 @@ namespace Inlämning1Tomaso.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<OrderDish> OrderDishes { get; set; }
-        public DbSet<Category> Category { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Definiera sammansatt primärnyckel för OrderDish
+            // OrderDish: sammansatt nyckel
             modelBuilder.Entity<OrderDish>()
                 .HasKey(od => new { od.OrderID, od.DishID });
 
-            // Konfigurera decimal-egenskaperna med precision och skala
+            // Decimal precision
             modelBuilder.Entity<Dish>()
                 .Property(d => d.Price)
                 .HasColumnType("decimal(18,2)");
@@ -37,7 +37,14 @@ namespace Inlämning1Tomaso.Data
             modelBuilder.Entity<OrderDish>()
                 .Property(od => od.Price)
                 .HasColumnType("decimal(18,2)");
+
+            // ✅ Dish - Ingredient (1 till många)
+            modelBuilder.Entity<Ingredient>()
+                .HasOne(i => i.Dish)
+                .WithMany(d => d.Ingredients)
+                .HasForeignKey(i => i.DishID);
         }
+
 
     }
 }

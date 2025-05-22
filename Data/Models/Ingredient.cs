@@ -1,16 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Inlämning1Tomaso.Data.Models;
+using System.ComponentModel.DataAnnotations;
 
-namespace Inlämning1Tomaso.Data.Models
+public class Ingredient
 {
-    public class Ingredient
-    {
-        [Key]
-        public int IngredientID { get; set; }
+    [Key]
+    public int IngredientID { get; set; }
 
-        [Required]
-        [StringLength(100)]
-        public string Name { get; set; }
+    [Required]
+    public string Name { get; set; }
 
-        public List<Dish> Dishes { get; set; } 
-    }
+    [Required]
+    public int DishID { get; set; }  // 👈 FK till Dish
+
+    public Dish Dish { get; set; }   // 👈 Navigering tillbaka till Dish
 }

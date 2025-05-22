@@ -17,7 +17,7 @@ namespace Inlämning1Tomaso.Data.Models
         public int UserID { get; set; } //FK till User
         public User User { get; set; } //Nav prop till User
 
-        public List<OrderDish> OrderDishes { get; set; } //Order med flera maträtter
+        public List<OrderDish> ?OrderDishes { get; set; } //Order med flera maträtter
 
     }
 }

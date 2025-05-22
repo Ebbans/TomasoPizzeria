@@ -21,33 +21,19 @@
   },
   {
     "ContainingType": "Inl\u00E4mning1Tomaso.Controllers.DishController",
-    "Method": "GetAll",
-    "RelativePath": "api/Dish",
+    "Method": "GetDishIngredients",
+    "RelativePath": "api/Dish/{id}/ingredients",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Inl\u00E4mning1Tomaso.API.Controllers.IngredientController",
-    "Method": "GetIngredients",
-    "RelativePath": "api/Ingredient",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Inl\u00E4mning1Tomaso.Data.Models.Ingredient, Inl\u00E4mning1Tomaso, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "Inl\u00E4mning1Tomaso.Controllers.OrderController",

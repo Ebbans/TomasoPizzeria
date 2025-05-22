@@ -9,7 +9,7 @@ namespace Inlämning1Tomaso.Data.Repos
 
         //Navprop
 
-        public Order Order { get; set; }
+        public Order ?Order { get; set; }
 
         public Dish Dish { get; set; } 
     }

@@ -40,6 +40,8 @@ public class OrderService : IOrderService
         }).ToList();
     }
 
+    //TODO , lägg till logik för att kunna välja flera maträtter
+
     public OrderDto AddOrder(CreateOrderDto dto, int userId)
     {
         var order = new Order
@@ -70,7 +72,7 @@ public class OrderService : IOrderService
         order.TotalPrice = total;
 
         _orderRepo.AddOrder(order);
-        // SaveChanges körs i repo enligt din kommentar, därför inget här
+        
 
         return new OrderDto
         {
