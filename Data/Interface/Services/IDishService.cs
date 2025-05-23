@@ -1,6 +1,4 @@
-﻿using Inlämning1Tomaso.Data.Models;
-using Inlämning1Tomaso.Data.DTOs;
-using System.Collections.Generic;
+﻿using Inlämning1Tomaso.Data.DTOs;
 
 namespace Inlämning1Tomaso.Data.Interface.Services
 {
@@ -8,4 +6,5 @@ namespace Inlämning1Tomaso.Data.Interface.Services
     {
         DishIngredientsDto GetDishIngredients(int dishId);
     }
+
 }

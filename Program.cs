@@ -72,20 +72,6 @@ builder.Services.AddAuthentication(options =>
         };
 });
 
-//.AddJwtBearer(options =>
-//{
-//    options.TokenValidationParameters = new TokenValidationParameters
-//    {
-//        ValidateIssuer = true,
-//        ValidIssuer = jwtSettings["Issuer"],
-//        ValidateAudience = true,
-//        ValidAudience = jwtSettings["Audience"],
-//        ValidateIssuerSigningKey = true,
-//        IssuerSigningKey = new SymmetricSecurityKey(key),
-//        ValidateLifetime = true,
-//    };
-//});
-
 // --------------------------------------------
 // Swagger Configuration
 // --------------------------------------------
@@ -143,7 +129,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseAuthentication();  // Viktigt för JWT
+app.UseAuthentication();  
 app.UseAuthorization();
 
 app.MapControllers();

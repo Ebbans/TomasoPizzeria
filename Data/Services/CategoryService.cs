@@ -33,7 +33,6 @@ namespace Inlämning1Tomaso.Data.Services
 
             _categoryRepo.CreateCategory(category);
 
-            // Returnera DTO med ID (om du vill se det direkt i svaret)
             return new CategoryDto
             {
                 //CategoryID = category.CategoryID,

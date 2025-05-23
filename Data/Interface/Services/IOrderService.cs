@@ -1,9 +1,13 @@
 ﻿using Inlämning1Tomaso.Data.DTOs;
-using System.Collections.Generic;
 
-public interface IOrderService
+namespace Inlämning1Tomaso.Data.Interface.Services
 {
-    OrderDto AddOrder(CreateOrderDto dto, int userId);
+    public interface IOrderService
+    {
+        OrderDto AddOrder(CreateOrderDto dto, int userId);
 
-    List<OrderDto> GetAllOrders(int userId);
+        List<OrderDto> GetAllOrders(int userId);
+    }
+
 }
+

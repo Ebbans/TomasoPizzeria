@@ -71,7 +71,7 @@ namespace Inlämning1Tomaso.Controllers
         [HttpPut("Update")]
         public IActionResult UpdateMyUser([FromBody] CreateUserDto dto)
         {
-            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier); // Ändrat
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier); 
             if (!int.TryParse(userIdString, out var userId))
                 return Unauthorized();
 
@@ -83,7 +83,7 @@ namespace Inlämning1Tomaso.Controllers
         [HttpDelete("Delete")]
         public IActionResult DeleteMyUser()
         {
-            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier); // Ändrat
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier); 
             if (!int.TryParse(userIdString, out var userId))
                 return Unauthorized();
 

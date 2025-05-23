@@ -1,6 +1,5 @@
 ﻿using Inlämning1Tomaso.Data.Interface.Repositories;
 using Inlämning1Tomaso.Data.Models;
-using System.Linq;
 
 namespace Inlämning1Tomaso.Data.Repos
 {

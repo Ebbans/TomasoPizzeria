@@ -3,10 +3,6 @@ using Inlämning1Tomaso.Data.Interface.Repositories;
 using Inlämning1Tomaso.Data.Interface.Services;
 using Inlämning1Tomaso.Data.Models;
 using Inlämning1Tomaso.Data;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 public class OrderService : IOrderService
 {
@@ -33,14 +29,12 @@ public class OrderService : IOrderService
             Dishes = o.OrderDishes.Select(od => new OrderDishDto
             {
                 DishID = od.DishID,
-                Name = _context.Dishes.Find(od.DishID)?.DishName,  // Ändrat till DishName
+                Name = _context.Dishes.Find(od.DishID)?.DishName, 
                 Quantity = od.Quantity,
                 Price = od.Price
             }).ToList()
         }).ToList();
     }
-
-    //TODO , lägg till logik för att kunna välja flera maträtter
 
     public OrderDto AddOrder(CreateOrderDto dto, int userId)
     {

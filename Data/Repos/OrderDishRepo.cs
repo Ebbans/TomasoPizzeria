@@ -11,6 +11,6 @@ namespace Inlämning1Tomaso.Data.Repos
 
         public Order ?Order { get; set; }
 
-        public Dish Dish { get; set; } 
+        public Dish ?Dish { get; set; } 
     }
 }

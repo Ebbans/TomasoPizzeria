@@ -1,6 +1,5 @@
 ﻿using Inlämning1Tomaso.Data.DTOs;
 using Inlämning1Tomaso.Data.Interface.Repositories;
-using Inlämning1Tomaso.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inlämning1Tomaso.Data.Repos

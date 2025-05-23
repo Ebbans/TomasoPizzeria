@@ -4,11 +4,6 @@ using Inlämning1Tomaso.Data.Interface.Repositories;
 using Inlämning1Tomaso.Data.Models;
 using System.Security.Cryptography;
 using System.Text;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using Inlämning1Tomaso.Data.Interface.Services;
 using Inlämning1Tomaso.Data.Keys;
 
@@ -45,8 +40,6 @@ public class UserService : IUserService
         return true;
     }
 
-
-
     public string Authenticate(string userName, string password)
     {
         var user = _db.Users.SingleOrDefault(u => u.UserName.ToLower() == userName.ToLower());
@@ -76,10 +69,9 @@ public class UserService : IUserService
         return new GetUserDto
         {   UserID = user.UserID,
             UserName = user.UserName,
-            //Password = "********"
+            
         };
     }
-
     public void UpdateUser(int id, CreateUserDto dto)
     {
         var hashedPassword = HashPassword(dto.CreatePassword);
@@ -95,8 +87,6 @@ public class UserService : IUserService
 
         _userRepo.UpdateUser(user);
     }
-
-
     public void DeleteUser(int id)
     {
         _userRepo.DeleteUser(id);

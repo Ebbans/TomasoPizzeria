@@ -1,7 +1,10 @@
 ﻿using Inlämning1Tomaso.Data.Models;
-
-public interface IOrderRepo
+namespace Inlämning1Tomaso.Data.Interface.Repositories
 {
-    void AddOrder(Order order);
-    List<Order> GetAllOrdersByUserId(int userId);
+    public interface IOrderRepo
+    {
+        void AddOrder(Order order);
+        List<Order> GetAllOrdersByUserId(int userId);
+    }
 }
+
