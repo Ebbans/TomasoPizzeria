@@ -22,7 +22,7 @@ namespace Inlämning1Tomaso.Controllers
         [HttpGet]
         public IActionResult GetOrders()
         {
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (!int.TryParse(userIdClaim, out int userId))
                 return Unauthorized();
 

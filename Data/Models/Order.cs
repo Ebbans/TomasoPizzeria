@@ -15,9 +15,9 @@ namespace Inlämning1Tomaso.Data.Models
 
         [Required]
         public int UserID { get; set; } 
-        public User ?User { get; set; } //Nav prop till User
+        public User User { get; set; } //Nav prop till User
 
-        public List<OrderDish> ?OrderDishes { get; set; } 
+        public List<OrderDish> OrderDishes { get; set; } 
 
     }
 }

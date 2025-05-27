@@ -12,21 +12,6 @@ namespace Inlämning1Tomaso.Data.Services
             _ingredientRepo = ingredientRepo;
         }
 
-        //public void AddIngredient(Ingredient ingredient)
-        //{
-        //    _ingredientRepo.AddIngredient(ingredient);
-        //}
-
-        //public void DeleteIngredient(int ingredientID)
-        //{
-        //    _ingredientRepo.DeleteIngredient(ingredientID);
-        //}
-
-        //public void UpdateIngredient(Ingredient ingredient)
-        //{
-        //    _ingredientRepo.UpdateIngredient(ingredient);
-        //}
-
         public List<Ingredient> GetAllIngredients()
         {
             return _ingredientRepo.GetAllIngredients();

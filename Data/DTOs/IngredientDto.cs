@@ -3,7 +3,7 @@
     public class IngredientDto
     {
         public int IngredientID { get; set; }
-        public string ?Name { get; set; }
+        public string Name { get; set; }
       
     }
 }

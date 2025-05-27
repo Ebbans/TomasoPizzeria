@@ -7,8 +7,8 @@
 
         //Navprop
 
-        public Order ?Order { get; set; }
-        public Dish ?Dish { get; set; }
+        public Order Order { get; set; }
+        public Dish Dish { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
 

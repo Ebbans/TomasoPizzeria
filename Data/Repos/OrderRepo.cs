@@ -21,13 +21,6 @@ namespace Inlämning1Tomaso.Data.Repos
             _context.SaveChanges();
         }
 
-        //public List<Order> GetAllOrders(int orderID)
-        //{
-        //    return _context.Orders
-        //                    .Include(o => o.OrderDishes)  // Inkludera OrderDishes för att få alla rätter för varje beställning
-        //                    .ToList();
-        //}
-
         public List<Order> GetAllOrdersByUserId(int userId)
         {
             return _context.Orders

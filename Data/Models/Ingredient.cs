@@ -7,10 +7,10 @@ public class Ingredient
     public int IngredientID { get; set; }
 
     [Required]
-    public string ?Name { get; set; }
+    public string Name { get; set; }
 
     [Required]
     public int DishID { get; set; }  // 👈 FK till Dish
 
-    public Dish ?Dish { get; set; }   // 👈 Navigering tillbaka till Dish
+    public Dish Dish { get; set; }   // 👈 Navigering tillbaka till Dish
 }

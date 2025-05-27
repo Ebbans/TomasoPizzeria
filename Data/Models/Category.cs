@@ -9,9 +9,9 @@ namespace Inlämning1Tomaso.Data.Models
         [Required]
 
         [StringLength(50)]
-        public string ?CategoryName { get; set; }
+        public string CategoryName { get; set; }
 
-        public List<Dish> ?Dishes { get; set; }
+        public List<Dish> Dishes { get; set; }
 
     }
 }

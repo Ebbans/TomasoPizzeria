@@ -2,7 +2,7 @@
 {
     public class CreateOrderDto
     {
-        public List<DishOrderItemDto> ?Dishes { get; set; }
+        public List<DishOrderItemDto> Dishes { get; set; }
     }
 
     public class DishOrderItemDto
