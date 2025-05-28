@@ -1,0 +1,18 @@
+name: Network Connectivity Test
+on: [push]
+
+jobs:
+  test-network:
+    runs-on: windows-latest
+    steps:
+      - name: Ping GitHub API
+        run: ping -n 4 api.github.com
+
+      - name: Curl GitHub API
+        run: curl -v https://api.github.com
+
+      - name: Curl GitHub Actions Content
+        run: curl -v https://actions.githubusercontent.com
+
+      - name: Curl GitHub Status
+        run: curl -v https://www.githubstatus.com/
