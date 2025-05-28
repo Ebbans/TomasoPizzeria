@@ -13,7 +13,7 @@ env:
   WORKING_DIRECTORY: .
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: windows-latest
 
     steps:
@@ -33,23 +33,6 @@ jobs:
 
       - name: Publish
         run: dotnet publish ${{ env.WORKING_DIRECTORY }} --configuration ${{ env.CONFIGURATION }} --no-build --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3.0.3
-        with:
-          name: webapp
-          path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-
-  deploy:
-    runs-on: windows-latest
-    needs: build
-
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v3.0.2
-        with:
-          name: webapp
-          path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v2
