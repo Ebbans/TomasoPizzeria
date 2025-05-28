@@ -27,7 +27,7 @@ jobs:
       - name: Publish
         run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
       - name: Publish Artifacts
-        uses: actions/upload-artifact@2b2f8e7b13892f4a3a5b6c0eb8a33faedc0b1347
+        uses: actions/upload-artifact@c99e9f87b6b8d3792d3a9a1c0b1c7bbf3a52e8f1
         with:
           name: webapp
           path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
@@ -37,7 +37,7 @@ jobs:
     needs: build
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@2aa6d86c7f1cd8c39ae9bcff44875a76e88c88d1
+        uses: actions/download-artifact@e1bdfa98187e49e9b12964c53c1db76a61a98a90
         with:
           name: webapp
           path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
