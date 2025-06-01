@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Inlämning1Tomaso")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+204f3bc17b4585db78a5c4b175c77b2f60088108")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+411f43a366522c2adf7a23dbe408e1dc2f997b6e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Inlämning1Tomaso")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Inlämning1Tomaso")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

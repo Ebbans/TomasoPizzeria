@@ -4144,11 +4144,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Jensen\\C#\\MTA - Azure\\Inlämning1Tomaso\\Inlämning1Tomaso.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\NyTomasoGithub\\Inlämning1Tomaso.csproj",
       "projectName": "Inlämning1Tomaso",
-      "projectPath": "C:\\Users\\Admin\\Desktop\\Jensen\\C#\\MTA - Azure\\Inlämning1Tomaso\\Inlämning1Tomaso.csproj",
+      "projectPath": "C:\\Users\\Admin\\Desktop\\NyTomasoGithub\\Inlämning1Tomaso.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Desktop\\Jensen\\C#\\MTA - Azure\\Inlämning1Tomaso\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\Desktop\\NyTomasoGithub\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
