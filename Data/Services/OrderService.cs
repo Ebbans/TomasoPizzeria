@@ -78,7 +78,7 @@ public class OrderService : IOrderService
             Dishes = order.OrderDishes.Select(od => new OrderDishDto
             {
                 DishID = od.DishID,
-                Name = _context.Dishes.Find(od.DishID)?.DishName,  // Ändrat till DishName
+                Name = _context.Dishes.Find(od.DishID)?.DishName, 
                 Quantity = od.Quantity,
                 Price = od.Price
             }).ToList()

@@ -38,7 +38,7 @@ namespace Inlämning1Tomaso.Data
                 .Property(od => od.Price)
                 .HasColumnType("decimal(18,2)");
 
-            // ✅ Dish - Ingredient (1 till många)
+            //  Dish - Ingredient (1 till många)
             modelBuilder.Entity<Ingredient>()
                 .HasOne(i => i.Dish)
                 .WithMany(d => d.Ingredients)

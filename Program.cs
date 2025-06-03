@@ -9,24 +9,29 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using Azure.Identity;
-using Azure.Extensions.AspNetCore.Configuration.Secrets;
 
 // --------------------------------------------
 // Konfiguration & Key Vault
 // --------------------------------------------
 var builder = WebApplication.CreateBuilder(args);
 
-var keyVaultName = "Tomaso-Key";
+var keyVaultName = "tomaso-Key";  // Ditt Key Vault namn
 var keyVaultUri = new Uri($"https://{keyVaultName}.vault.azure.net/");
 builder.Configuration.AddAzureKeyVault(keyVaultUri, new DefaultAzureCredential());
 
 // --------------------------------------------
 // Add controllers & DbContext
 // --------------------------------------------
-builder.Services.AddControllers();
 
+// Läs connection string direkt från Key Vault
+var connectionString = builder.Configuration["Tomaso:Connstring"]
+    ?? throw new InvalidOperationException("Missing Tomaso:Connstring");
+
+// Registrera DbContext med connection string från Key Vault
 builder.Services.AddDbContext<TomasoDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddControllers();
 
 // --------------------------------------------
 // Dependency Injection – Repositories & Services
@@ -47,17 +52,22 @@ builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<IUserService, UserService>();
 
 // --------------------------------------------
-// JWT Authentication – läs direkt från Key Vault
+// Läs JWT-inställningar från Key Vault
 // --------------------------------------------
-var issuer = builder.Configuration["JWT--Issuer"] ?? throw new InvalidOperationException("Missing JWT--Issuer");
-var audience = builder.Configuration["JWT--Audience"] ?? throw new InvalidOperationException("Missing JWT--Audience");
-var key = Encoding.UTF8.GetBytes(builder.Configuration["JWT--Secrets"] ?? throw new InvalidOperationException("Missing JWT--Secrets"));
+var issuer = builder.Configuration["JWT:Issuer"]
+    ?? throw new InvalidOperationException("Missing JWT:Issuer");
+var audience = builder.Configuration["JWT:Audience"]
+    ?? throw new InvalidOperationException("Missing JWT:Audience");
+var key = Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]
+    ?? throw new InvalidOperationException("Missing JWT:Key"));
 
+// --------------------------------------------
+// JWT Authentication
+// --------------------------------------------
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
 .AddJwtBearer(options =>
 {
@@ -69,7 +79,7 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = audience,
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(key),
-        ValidateLifetime = true,
+        ValidateLifetime = true
     };
 
     options.Events = new JwtBearerEvents
@@ -126,7 +136,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // --------------------------------------------
-// App Build & Middleware Pipeline
+// Build & Run
 // --------------------------------------------
 var app = builder.Build();
 
