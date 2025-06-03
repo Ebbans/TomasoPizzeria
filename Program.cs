@@ -1,15 +1,24 @@
-using Inl‰mning1Tomaso.Data;
-using Inl‰mning1Tomaso.Data.Interface.Repositories;
-using Inl‰mning1Tomaso.Data.Interface.Services;
-using Inl‰mning1Tomaso.Data.Repos;
-using Inl‰mning1Tomaso.Data.Services;
+Ôªøusing Inl√§mning1Tomaso.Data;
+using Inl√§mning1Tomaso.Data.Interface.Repositories;
+using Inl√§mning1Tomaso.Data.Interface.Services;
+using Inl√§mning1Tomaso.Data.Repos;
+using Inl√§mning1Tomaso.Data.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using Azure.Identity;
+using Azure.Extensions.AspNetCore.Configuration.Secrets;
 
+// --------------------------------------------
+// Konfiguration & Key Vault
+// --------------------------------------------
 var builder = WebApplication.CreateBuilder(args);
+
+var keyVaultName = "Tomaso-Key";
+var keyVaultUri = new Uri($"https://{keyVaultName}.vault.azure.net/");
+builder.Configuration.AddAzureKeyVault(keyVaultUri, new DefaultAzureCredential());
 
 // --------------------------------------------
 // Add controllers & DbContext
@@ -20,7 +29,7 @@ builder.Services.AddDbContext<TomasoDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // --------------------------------------------
-// Dependency Injection ñ Repositories & Services
+// Dependency Injection ‚Äì Repositories & Services
 // --------------------------------------------
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
@@ -38,10 +47,11 @@ builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<IUserService, UserService>();
 
 // --------------------------------------------
-// JWT Authentication
+// JWT Authentication ‚Äì l√§s direkt fr√•n Key Vault
 // --------------------------------------------
-var jwtSettings = builder.Configuration.GetSection("Jwt");
-var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]);
+var issuer = builder.Configuration["JWT--Issuer"] ?? throw new InvalidOperationException("Missing JWT--Issuer");
+var audience = builder.Configuration["JWT--Audience"] ?? throw new InvalidOperationException("Missing JWT--Audience");
+var key = Encoding.UTF8.GetBytes(builder.Configuration["JWT--Secrets"] ?? throw new InvalidOperationException("Missing JWT--Secrets"));
 
 builder.Services.AddAuthentication(options =>
 {
@@ -51,25 +61,25 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidIssuer = jwtSettings["Issuer"],
-            ValidateAudience = true,
-            ValidAudience = jwtSettings["Audience"],
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(key),
-            ValidateLifetime = true,
-        };
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidIssuer = issuer,
+        ValidateAudience = true,
+        ValidAudience = audience,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateLifetime = true,
+    };
 
-        options.Events = new JwtBearerEvents
+    options.Events = new JwtBearerEvents
+    {
+        OnAuthenticationFailed = context =>
         {
-            OnAuthenticationFailed = context =>
-            {
-                Console.WriteLine($"JWT error: {context.Exception.Message}");
-                return Task.CompletedTask;
-            }
-        };
+            Console.WriteLine($"JWT error: {context.Exception.Message}");
+            return Task.CompletedTask;
+        }
+    };
 });
 
 // --------------------------------------------
@@ -115,21 +125,23 @@ builder.Services.AddSwaggerGen(c =>
     c.AddSecurityRequirement(securityRequirement);
 });
 
+// --------------------------------------------
+// App Build & Middleware Pipeline
+// --------------------------------------------
 var app = builder.Build();
 
-// --------------------------------------------
-// Middleware pipeline
-// --------------------------------------------
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tomasos Pizzeria API");
+        c.RoutePrefix = string.Empty;
+        c.DocumentTitle = "Tomaso API Dokumentation";
     });
 }
 
-app.UseAuthentication();  
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
