@@ -144,3 +144,5 @@ C:\Users\Admin\Desktop\NyTomasoGithub\obj\Release\net8.0\refint\Inlämning1Tomas
 C:\Users\Admin\Desktop\NyTomasoGithub\obj\Release\net8.0\Inlämning1Tomaso.pdb
 C:\Users\Admin\Desktop\NyTomasoGithub\obj\Release\net8.0\Inlämning1Tomaso.genruntimeconfig.cache
 C:\Users\Admin\Desktop\NyTomasoGithub\obj\Release\net8.0\ref\Inlämning1Tomaso.dll
+C:\Users\Admin\Desktop\NyTomasoGithub\bin\Release\net8.0\Azure.Extensions.AspNetCore.Configuration.Secrets.dll
+C:\Users\Admin\Desktop\NyTomasoGithub\bin\Release\net8.0\Azure.Security.KeyVault.Secrets.dll
